@@ -4,6 +4,7 @@
 
 .App-logo {
   height: 40vmin;
+  max-width: 100%; /* Ensures the logo does not overflow */
   pointer-events: none;
 }
 
@@ -22,6 +23,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px; /* Add padding for smaller screens */
 }
 
 .App-link {
@@ -34,5 +36,28 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(10px + 4vmin); /* Increase font size for mobile readability */
+    min-height: 100vh; /* Maintain full-screen height on mobile */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .App-logo {
+    height: 30vmin; /* Scale down the logo for mobile screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    font-size: calc(10px + 5vmin); /* Further increase font size for very small screens */
+  }
+
+  .App-logo {
+    height: 25vmin; /* Scale logo even smaller */
   }
 }
