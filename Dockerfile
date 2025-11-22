@@ -1,26 +1,47 @@
 # Use an official node image as a base
-FROM node:18-alpine
+FROM node:18-alpine AS base
 
-# Set the working directory
+# Install dependencies only when needed
+FROM base AS deps
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy the rest of the application files
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Build the application
 RUN npm run build
 
-# Install serve globally to serve the production build
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Create a non-root user
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy the static export
+COPY --from=builder /app/out ./out
+
+# Install serve globally
 RUN npm install -g serve
 
-# Expose the port
+USER nextjs
+
 EXPOSE 3000
 
-# Start the app using the build folder
-CMD ["serve", "-s", "build", "-l", "3000"]
+ENV PORT=3000
+
+# Serve the static export
+CMD ["serve", "-s", "out", "-l", "3000"]

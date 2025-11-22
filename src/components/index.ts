@@ -1,0 +1,10 @@
+export { default as Navbar } from './Navbar/Navbar';
+export { default as Footer } from './Footer/Footer';
+export { default as Hero } from './Hero/Hero';
+export { default as Item } from './Item/Item';
+export { default as Popular } from './Popular/Popular';
+export { default as Offers } from './Offers/Offers';
+export { default as NewCollections } from './NewCollections/NewCollections';
+export { default as Newsletter } from './Newsletter/Newsletter';
+export { default as ShopCategory } from './ShopCategory/ShopCategory';
+export { default as ProductDisplay } from './ProductDisplay/ProductDisplay';
