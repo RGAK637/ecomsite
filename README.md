@@ -69,7 +69,7 @@ npm run start
 ## Project Structure
 
 ```
-src/
+ecomsite/
 ├── app/                          # Next.js App Router
 │   ├── layout.tsx               # Root layout (Navbar, Footer)
 │   ├── page.tsx                 # Home page
@@ -102,8 +102,8 @@ src/
 ├── types/                        # TypeScript definitions
 │   └── index.ts                 # Shared interfaces
 │
-public/
-└── assets/                       # Static assets (images, icons)
+└── public/
+    └── assets/                   # Static assets (images, icons)
 ```
 
 ## Available Scripts
@@ -173,7 +173,7 @@ interface Product {
 
 ### Adding New Products
 
-Edit `src/data/products.ts` to add products:
+Edit `data/products.ts` to add products:
 
 ```typescript
 {
